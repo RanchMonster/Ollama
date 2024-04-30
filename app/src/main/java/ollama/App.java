@@ -5,7 +5,7 @@ package ollama;
 
 
 public class App {
-        public static void main(String[] args) {
+        public static void main(String[] args) throws ResponseError {
         try {
             Ollama AI = new Ollama("https://dnjrepair.com:7007");
         } catch (RequestError | CoroutineError | Exception e) {
