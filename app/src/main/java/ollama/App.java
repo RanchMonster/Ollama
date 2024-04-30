@@ -3,10 +3,6 @@
  */
 package ollama;
 
-import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class App {
         public static void main(String[] args) {
