@@ -259,5 +259,4 @@ public class Ollama {
         // Implementation for encoding images
         return image;
     }
-
     }
