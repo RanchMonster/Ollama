@@ -13,7 +13,7 @@ public class App {
         try {
             Ollama AI = new Ollama("https://dnjrepair.com:7007");
             OllamaMessageList messageList = new OllamaMessageList();
-            messageList.addMessage(new ollama.OllamaMessage("Hello", OllamaMessage.USER, false));
+            messageList.addMessage(new ollama.OllamaMessage("Hello", OllamaMessage.USER));
             OllamaMessage json = AI.chat("llama3",messageList, false, null, null, null); 
             System.out.println(json.toString());
         } catch (RequestError | CoroutineError | Exception | ResponseError e) {

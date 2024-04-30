@@ -15,6 +15,12 @@ public class OllamaMessage {
         this.done = done;
     
     }
+    /**
+     * this is for user Meassges 
+     */
+    public OllamaMessage(String content, String role){
+        this(content, role, false);
+    }
     public String getContent() {
         return this.content;
     }
