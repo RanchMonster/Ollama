@@ -18,8 +18,10 @@ public class Ollama {
 
     public Ollama(String host) throws IOException, RequestError, CoroutineError {
         this.host = host;
-        String re= String.valueOf(checkOllama().await());
-        System.out.println(re);
+        int code= checkOllama().await();
+        if(code!=200){
+            throw new RequestError("Host gave invaild status code:"+code);
+        }
     }
     public BetterFuture<Integer> checkOllama() throws IOException, CoroutineError, RequestError {
         BetterFuture<Integer> future = new BetterFuture<>();
