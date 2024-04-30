@@ -2,6 +2,7 @@ package ollama;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
 public class OllamaMessageList {
     private JSONArray messages;
     public OllamaMessageList(){
