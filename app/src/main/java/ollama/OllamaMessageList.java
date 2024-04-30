@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class OllamaMessageList {
+public class OllamaMessageList implements Iterable<OllamaMessage> {
     private ArrayList<OllamaMessage> messages;
     public OllamaMessageList(){
         messages= new ArrayList<OllamaMessage>();

@@ -163,7 +163,8 @@ public class Ollama {
         if (model == null || model.isEmpty()) {
             throw new RequestError("must provide a model");
         }
-        JSONArray messages = messageList.toJsonArray();
+        JSONArray messages = new JSONArray();
+        for(OllamaMessage x:messageList)
 
         if (messages != null) {
             for (int i = 0; i < messages.length(); i++) {
