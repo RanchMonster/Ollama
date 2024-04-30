@@ -260,10 +260,4 @@ public class Ollama {
         return image;
     }
 
-    // Helper method for parsing model file content
-    private String parseModelfile(String content) {
-        // Implementation for parsing model file content
-        return content;
-    }
-
     }
