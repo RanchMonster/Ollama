@@ -1,0 +1,5 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "gitdoc.enabled": true,
+    "java.compile.nullAnalysis.mode": "automatic"
+}
