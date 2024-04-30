@@ -165,7 +165,7 @@ public class Ollama {
         }
         JSONArray messages = new JSONArray();
         for(OllamaMessage x:messageList){
-            oll
+            messages.put(x.toJsonObject());
         }
 
         if (messages != null) {
