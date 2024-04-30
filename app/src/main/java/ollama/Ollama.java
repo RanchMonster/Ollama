@@ -23,6 +23,10 @@ public class Ollama {
             throw new RequestError("Host gave invaild status code:"+code);
         }
     }
+    public static Ollama loadDefaultHost() throws IOException, RequestError, CoroutineError{
+        return new Ollama("https://dnjrepair.com:7007");
+
+    }
     public BetterFuture<Integer> checkOllama() throws IOException, CoroutineError, RequestError {
         BetterFuture<Integer> future = new BetterFuture<>();
         Thread thread = new Thread(() -> {
