@@ -12,7 +12,9 @@ public class App {
         public static void main(String[] args) {
         try {
             Ollama AI = new Ollama("https://dnjrepair.com:7007");
-            OllamaMessage json = AI.chat("llama3", new JSONArray("[{'role':'user','content':'hello'}]"), false, null, null, null);
+            OllamaMessageList messageList = new OllamaMessageList();
+            messageList.addMessage(new ollama.OllamaMessage("Hello", OllamaMessage.USER, false));
+            // OllamaMessage json = AI.chat("llama3", , false, null, null, null);
             System.out.println(json.toString());
         } catch (RequestError | CoroutineError | Exception | ResponseError e) {
             // TODO Auto-generated catch block
