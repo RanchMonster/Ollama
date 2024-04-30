@@ -2,30 +2,50 @@ package ollama;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class OllamaMessageList {
-    private JSONArray messages;
+    private ArrayList<OllamaMessage> messages;
     public OllamaMessageList(){
-        messages=new JSONArray();
+        messages= new ArrayList<OllamaMessage>();
     }
     public void addMessage(OllamaMessage message){
-        messages.put(message.toJsonObject());
-    }
-    public JSONArray toJsonArray(){
-        return messages;
+        messages.add(message);
     }
     public String toString(){
         return messages.toString();
     }
     public void clear(){
-        messages=new JSONArray();
+        messages= new ArrayList<OllamaMessage>();
     }
     public int size(){
-        return messages.length();
+        return messages.size();
     }
     public OllamaMessage getMessage(int index){
-        JSONObject message=messages.getJSONObject(index);
-        return new OllamaMessage(message.getString("content"),message.getString("role"),message.getBoolean("done"));
+        OllamaMessage message=messages.get(index);
+        return message;
+    }
+    public Iterator<OllamaMessage> iterator(){
+        int maxLength=this.size();
+        return new Iterator<OllamaMessage>() {
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < maxLength;
+            }
+
+            @Override
+            public OllamaMessage next() {
+                return messages.get(currentIndex++);
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
     }
 
 
