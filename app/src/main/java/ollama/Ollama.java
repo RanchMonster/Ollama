@@ -16,15 +16,20 @@ public class Ollama {
     private final String host;
 
 
-    public Ollama(String host) throws IOException, RequestError, CoroutineError {
+    public Ollama(String host) throws IOException, RequestError, CoroutineError, ResponseError {
         this.host = host;
         int code= checkOllama().await();
         if(code!=200){
-            throw new RequestError("Host gave invaild status code:"+code);
+            throw new ResponseError("Host gave invaild status code",code);
         }
     }
-    public static Ollama loadDefaultHost() throws IOException, RequestError, CoroutineError{
-        return new Ollama("https://dnjrepair.com:7007");
+    public static Ollama loadDefaultHost() throws ResponseError{
+        try {
+            return new Ollama("https://dnjrepair.com:7007");
+        } catch (IOException | RequestError | CoroutineError e) {
+            e.printStackTrace();
+            return null;
+        }
 
     }
     public BetterFuture<Integer> checkOllama() throws IOException, CoroutineError, RequestError {
