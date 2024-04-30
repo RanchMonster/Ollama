@@ -8,7 +8,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 
 import java.net.URI;
-import java.nio.file.*;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
