@@ -25,7 +25,7 @@ public class Ollama {
     }
     public static Ollama loadDefaultHost() throws ResponseError{
         try {
-            return new Ollama("https://dnjrepair.com:7007");
+            return new Ollama("https://dnjrepair.com:7007"); // will set to local when I publish the libray
         } catch (IOException | RequestError | CoroutineError e) {
             e.printStackTrace();
             return null;
