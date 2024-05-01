@@ -27,7 +27,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("ollama.App")
+    mainClass.set("ollama.Ollama")
 }
 
 tasks.named<Test>("test") {
