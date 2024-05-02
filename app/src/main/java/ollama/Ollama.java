@@ -23,13 +23,8 @@ public class Ollama {
             throw new ResponseError("Host gave invaild status code",code);
         }
     }
-    public static Ollama loadDefaultHost() throws ResponseError{
-        try {
-            return new Ollama("https://dnjrepair.com:7007"); // will set to local when I publish the libray
-        } catch (IOException | RequestError | CoroutineError e) {
-            e.printStackTrace();
-            return null;
-        }
+    public static Ollama loadDefaultHost() throws IOException, RequestError, CoroutineError, ResponseError {
+        return new Ollama("https://dnjrepair.com:7007");
 
     }
     public BetterFuture<Integer> checkOllama() throws IOException, CoroutineError, RequestError {
