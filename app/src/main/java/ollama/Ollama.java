@@ -25,7 +25,6 @@ public class Ollama {
     }
     public static Ollama loadDefaultHost() throws IOException, RequestError, CoroutineError, ResponseError {
         return new Ollama("https://dnjrepair.com:7007");
-
     }
     public BetterFuture<Integer> checkOllama() throws IOException, CoroutineError, RequestError {
         BetterFuture<Integer> future = new BetterFuture<>();
