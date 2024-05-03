@@ -29,6 +29,12 @@ application {
     // Define the main class for the application.
     mainClass.set("ollama.Ollama")
 }
+jar {
+    // Include dependencies in the JAR file
+    from {
+        configurations.compileClasspath.collect() { it.isDirectory() ? it : zipTree(it) }
+    }
+}
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
