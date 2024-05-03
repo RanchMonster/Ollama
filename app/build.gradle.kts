@@ -9,6 +9,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+     id 'java'
 }
 
 repositories {
@@ -29,12 +31,12 @@ application {
     // Define the main class for the application.
     mainClass.set("ollama.Ollama")
 }
-jar {
-    // Include dependencies in the JAR file
-    from {
-        configurations.compileClasspath.collect() { it.isDirectory() ? it : zipTree(it) }
-    }
-}
+// jar {
+//     // Include dependencies in the JAR file
+//     from {
+//         configurations.compileClasspath.collect() { it.isDirectory() ? it : zipTree(it) }
+//     }
+// }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
