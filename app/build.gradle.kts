@@ -29,11 +29,10 @@ application {
     // Define the main class for the application.
     mainClass.set("ollama.Ollama")
 }
-configurations.all {
+jar {
     // Include dependencies in the JAR file
-    artifacts {
-        val artifact = zipTree(projectDir.resolve('build/classes/java/main'))
-        artifact
+    from {
+        configurations.compileClasspath.collect() { it.isDirectory() ? it : zipTree(it) }
     }
 }
 
