@@ -9,8 +9,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
-     id 'java'
+    kotlin("jvm") version "1.5.21"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
 repositories {
