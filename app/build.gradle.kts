@@ -31,18 +31,13 @@ application {
     // Define the main class for the application.
     mainClass.set("ollama.Ollama")
 }
-shadowJar {
-    classifier=null
-}
+
 tasks.withType<Jar> {
     archiveBaseName.set("App")
 }
-<<<<<<< HEAD
 shadowJar {
     classifier=null
 }
-=======
->>>>>>> 083217c0df40e318f791cc304625128f77a4ce29
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
