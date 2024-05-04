@@ -38,7 +38,7 @@ tasks.shadowJar {
 
 tasks.named<Jar>("jar") {
     // Change the name of the regular JAR file
-    ena
+    enabled
 }
 
 tasks.named<Test>("test") {
