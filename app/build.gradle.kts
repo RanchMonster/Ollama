@@ -38,7 +38,7 @@ application {
 tasks.getByName("shadowJar") {
     // Configure the shadow jar task as needed
     // For example, change the name of the output jar:
-    archiveBaseName.set('shadow')
+    archiveBaseName.set('shadow")
     archiveClassifier.set('')
 }
 tasks.withType<Jar> {
