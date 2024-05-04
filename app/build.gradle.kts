@@ -37,7 +37,6 @@ application {
 //         configurations.compileClasspath.collect() { it.isDirectory() ? it : zipTree(it) }
 //     }
 // }
-tasks.war { archiveFileName.set("something.war") }
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
