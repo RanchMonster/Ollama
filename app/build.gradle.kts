@@ -37,10 +37,8 @@ application {
 //         configurations.compileClasspath.collect() { it.isDirectory() ? it : zipTree(it) }
 //     }
 // }
-tasks {
-    bootJar {
-        archiveFileName.set("App.jar")
-    }
+tasks.withType<Jar> {
+    archiveBaseName.set("App")
 }
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
