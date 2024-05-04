@@ -45,3 +45,14 @@ tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+tasks.named("distZip") {
+    dependsOn(":App:shadowJar")
+}
+
+tasks.named("distTar") {
+    dependsOn(":App:shadowJar")
+}
+
+tasks.named("startScripts") {
+    dependsOn(":App:shadowJar")
+}
