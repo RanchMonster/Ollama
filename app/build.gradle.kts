@@ -36,10 +36,10 @@ tasks.shadowJar {
     // }
 }
 
-tasks.named<Jar>("jar") {
-    // Change the name of the regular JAR file
-    archiveBaseName.set("DO NOT USE THIS JAR")
-}
+// tasks.named<Jar>("jar") {
+//     // Change the name of the regular JAR file
+//     archiveBaseName.set("App")
+// }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
