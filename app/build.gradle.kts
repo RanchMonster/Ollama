@@ -10,7 +10,7 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
     // kotlin("jvm") version "1.5.21"
-    id("com.github.johnrengelman.shadow") version "V"
+    id("com.github.johnrengelman.shadow") version "8.0.0"
 }
 
 repositories {
