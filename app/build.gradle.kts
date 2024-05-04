@@ -32,7 +32,7 @@ application {
     mainClass.set("ollama.Ollama")
 }
 
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+// import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 tasks.getByName<ShadowJar>("shadowJar") {
     // Configure the shadow jar task as needed
