@@ -29,7 +29,9 @@ application {
     // Define the main class for the application.
     mainClass.set("ollama.App")
 }
-
+shadowJar {
+    classifier=null
+}
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
