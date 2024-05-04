@@ -37,6 +37,8 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 tasks.getByName<ShadowJar>("shadowJar") {
     // Configure the shadow jar task as needed
     // For example, change the name of the output jar:
+    classifier=null
+
     archiveFileName.set("your-app-all.jar")
 }
 tasks.withType<Jar> {
