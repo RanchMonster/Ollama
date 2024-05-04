@@ -38,7 +38,7 @@ tasks.shadowJar {
 
 tasks.named<Jar>("jar") {
     // Change the name of the regular JAR file
-    archiveBaseName.set("D")
+    archiveBaseName.set("DO NOT USE THIS JAR")
 }
 
 tasks.named<Test>("test") {
