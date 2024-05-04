@@ -34,7 +34,7 @@ application {
 
 // import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-tasks.getByName<String>("shadowJar") {
+tasks.getByName<ShadowJar>("shadowJar") {
     // Configure the shadow jar task as needed
     // For example, change the name of the output jar:
     archiveFileName.set("your-app-all.jar")
