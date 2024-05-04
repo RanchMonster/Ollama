@@ -23,7 +23,7 @@ dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
     implementation("org.json:json:20140107")
-    shadow()
+    shadow("")
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
 }
