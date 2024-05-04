@@ -29,7 +29,7 @@ tasks.shadowJar {
     // Configure the shadow jar task as needed
     // For example, change the name of the output jar:
     archiveBaseName.set("shadow")
-    ar
+    archiveClassifier.set("")
     // If you want to exclude any dependencies, you can do it like this:
     // dependencies {
     //     exclude("group:name")
