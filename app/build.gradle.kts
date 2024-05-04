@@ -37,7 +37,7 @@ application {
 tasks.getByName("shadowJar") {
     // Configure the shadow jar task as needed
     // For example, change the name of the output jar:
-    archiveFileName.set("your-app-all.jar")
+    .set("your-app-all.jar")
 }
 tasks.withType<Jar> {
     archiveBaseName.set("App")
