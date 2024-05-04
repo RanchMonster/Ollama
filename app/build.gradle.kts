@@ -9,6 +9,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    // kotlin("jvm") version "1.5.21"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
 repositories {
@@ -27,12 +29,26 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("ollama.App")
+    mainClass.set("ollama.Ollama")
 }
+// jar {
+//     // Include dependencies in the JAR file
+//     from {
+//         configurations.compileClasspath.collect() { it.isDirectory() ? it : zipTree(it) }
+//     }
+// }
+tasks.withType<Jar> {
+    archiveBaseName.set("App")
+}
+<<<<<<< HEAD
 shadowJar {
     classifier=null
 }
+=======
+>>>>>>> 083217c0df40e318f791cc304625128f77a4ce29
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+    
 }
+
