@@ -42,8 +42,7 @@ tasks.getByName("shadowJar") {
 tasks.withType<Jar> {
     archiveBaseName.set("App")
 }
-shadowJar {
-}
+
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
