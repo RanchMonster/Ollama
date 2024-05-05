@@ -139,6 +139,7 @@ public class Ollama {
                 public boolean hasNext() {
                     try {
                         return (line = reader.readLine()) != null;
+                       
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
