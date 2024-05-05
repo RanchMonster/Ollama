@@ -53,6 +53,9 @@ public class IterableFuture<T> implements Iterable<T> {
      * @throws CoroutineError
      */
     public T await() throws CoroutineError{
+        while (closed) {
+            
+        }
         return futures.remove(0).await();
     }
     
