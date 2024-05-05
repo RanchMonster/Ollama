@@ -43,7 +43,7 @@ public class Ollama {
     }
     /**
      * 
-     * @return the respon
+     * @return the response code of the host
      * @throws IOException
      * @throws CoroutineError
      * @throws RequestError
