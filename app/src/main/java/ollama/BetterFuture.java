@@ -37,6 +37,4 @@ public class BetterFuture<T> extends CompletableFuture<T> {
         });
         return future;
     }
-
-
 }
