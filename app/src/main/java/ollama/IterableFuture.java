@@ -14,6 +14,7 @@ public class IterableFuture<T> implements Iterable<T> {
     public void Future(BetterFuture<T> value){
         futures.add(value);
     }
+    
     public Iterator<T> iterator(){
         return new Iterator<T>() {
             private int currentIndex=0;
