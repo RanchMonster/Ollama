@@ -15,7 +15,14 @@ import org.json.*;
 public class Ollama {
     private final String host;
 
-
+    /**
+     * 
+     * @param host
+     * @throws IOException
+     * @throws RequestError
+     * @throws CoroutineError
+     * @throws ResponseError
+     */
     public Ollama(String host) throws IOException, RequestError, CoroutineError, ResponseError {
         this.host = host;
         int code= checkOllama().await();
