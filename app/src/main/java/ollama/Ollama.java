@@ -32,7 +32,7 @@ public class Ollama {
     }
     /**
      * 
-     * @return the current default host is 
+     * @return the current default host is https://dnjrepair.com:7007
      * @throws IOException
      * @throws RequestError
      * @throws CoroutineError
