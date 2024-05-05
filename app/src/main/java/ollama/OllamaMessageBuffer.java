@@ -9,12 +9,6 @@ class OllamaMessageBuffer extends BufferedReader implements Iterable<OllamaMessa
     private OllamaMessageList messages;
     public OllamaMessageBuffer(Reader in) {
         super(in);
-        try {
-            BetterFuture future = new BetterFuture<Boolean>();
-            future.complete(generate());
-        } catch (JSONException | IOException e) {
-            System.err.println("unreadable response");
-        }
     }
     public OllamaMessageBuffer(Reader in, int sz) {
         super(in, sz);
