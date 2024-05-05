@@ -139,7 +139,7 @@ public class Ollama {
 
     public BufferedReader requestStream(String method, String url, JSONObject json, boolean stream) throws IOException, ResponseError, RequestError, CoroutineError {
         BufferedReader reader= stream(method, url, json);
-        System.out.println();
+        System.out.println(reader.readLine());
         return reader;
     }
 
