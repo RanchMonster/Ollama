@@ -302,8 +302,8 @@ public class Ollama {
 //        return result;
 //    }
     /**
-     * List all available models
-     * @return
+     * 
+     * @return 
      * @throws IOException
      * @throws JSONException
      * @throws ResponseError
