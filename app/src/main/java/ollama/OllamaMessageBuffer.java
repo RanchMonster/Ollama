@@ -30,7 +30,7 @@ class OllamaMessageBuffer extends BufferedReader{
                     OllamaMessage message=new OllamaMessage(json.getString("content"),json.getString("role"),json.getBoolean("done"));
                     current.complete(message);
                 }
-                
+                messages.close();
             } catch (JSONException | IOException e) {
                 current.completeExceptionally(e);
             }
