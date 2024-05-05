@@ -30,9 +30,7 @@ public class IterableFuture<T> implements Iterable<T> {
             }
         };
     }
-    /**
-     * 
-     */
+    /** */
     public T await() throws CoroutineError{
         return futures.remove(0).await();
     }
