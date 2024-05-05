@@ -8,6 +8,9 @@ class OllamaMessageBuffer implements Iterable<OllamaMessage> {
     private Iterator<String> reader;
     OllamaMessageBuffer(Iterator<String> reader) {
         this.reader = reader;
+        while (!reader.hasNext()) {
+            continue;
+        }
     }
     public Iterator<OllamaMessage> iterator() {
         return new Iterator<OllamaMessage>() {
