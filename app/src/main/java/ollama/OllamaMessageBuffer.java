@@ -20,6 +20,12 @@ class OllamaMessageBuffer extends BufferedReader{
             OllamaMessageBuffer buffer = new OllamaMessageBuffer(in);
             String line;
             try {
+                try {
+                    messages.Future(current);
+                } catch (CoroutineError e) {
+                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
+                }
                 while ((line= buffer.readLine())!=null) {
                     JSONObject json=new JSONObject(line);
                     boolean done=json.getBoolean("done");
