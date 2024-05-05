@@ -1,7 +1,9 @@
 package ollama;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Iterator;
 import org.json.JSONObject;
+import org.json.JSONException;
 class OllamaMessageBuffer implements Iterable<OllamaMessage> {
     private BufferedReader reader;
     private OllamaMessage lastMessage;
@@ -30,6 +32,20 @@ class OllamaMessageBuffer implements Iterable<OllamaMessage> {
             }
         };
     }
-    
+    public OllamaMessage nostream(){
+        String curr;
+        JSONObject obj;
+        try {
+            while ((curr = reader.readLine())!=null) {
+                try{
+                    obj = new JSONObject(curr);
+                }catch( e){
+                    return null;
+                }
+            }
+        } catch (IOException e) {
+            return null;
+        }
+    }
 }
 
