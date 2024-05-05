@@ -301,7 +301,15 @@ public class Ollama {
 //        result.put("status", response.getInt("status") == 200 ? "success" : "error");
 //        return result;
 //    }
-    /** */
+    /**
+     * 
+     * @return
+     * @throws IOException
+     * @throws JSONException
+     * @throws ResponseError
+     * @throws RequestError
+     * @throws CoroutineError
+     */
     public ArrayList<String> list() throws IOException, JSONException, ResponseError, RequestError, CoroutineError {
         JSONObject data=requestToJson(request("GET", "/api/tags", null).await());
         JSONArray list=data.getJSONArray("models");
