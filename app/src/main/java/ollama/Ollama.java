@@ -160,8 +160,8 @@ public class Ollama {
     }
 
     /**
-     * 
-     * @param model
+     * Generate a text from a prompt
+     * @param model The model to use
      * @param prompt
      * @param system
      * @param template
