@@ -10,7 +10,6 @@ class OllamaMessageBuffer extends BufferedReader implements Iterable<OllamaMessa
     public OllamaMessageBuffer(Reader in) {
         super(in);
         try {
-            
             generate();
         } catch (JSONException | IOException e) {
             System.err.println("unreadable response");
