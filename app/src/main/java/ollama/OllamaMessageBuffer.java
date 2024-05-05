@@ -9,10 +9,21 @@ class OllamaMessageBuffer extends BufferedReader{
     private OllamaMessageList messages;
     public OllamaMessageBuffer(Reader in) {
         super(in);
-        
+        try {
+            generate();
+        } catch (JSONException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     public OllamaMessageBuffer(Reader in, int sz) {
         super(in, sz);
+        try {
+            generate();
+        } catch (JSONException | IOException e) {
+            // TODO Auto-generated catch block
+            Sys
+        }
     }
     private void generate() throws IOException, JSONException {
         JSONObject json=new JSONObject(super.readLine());
