@@ -36,4 +36,8 @@ public class OllamaMessage {
         data.put("role", role);
         return data;
     }
+    public void mergeChunck(OllamaMessage other){
+        this.content+=other.content;
+        
+    }
 }

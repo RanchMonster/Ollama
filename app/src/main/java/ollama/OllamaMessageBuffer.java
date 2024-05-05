@@ -35,14 +35,21 @@ class OllamaMessageBuffer implements Iterable<OllamaMessage> {
     public OllamaMessage nostream(){
         String curr;
         JSONObject obj;
+        OllamaMessageList messages=new OllamaMessageList();
         try {
             while ((curr = reader.readLine())!=null) {
                 try{
                     obj = new JSONObject(curr);
+                    messages.addMessage(new OllamaMessage(obj.getString("content"), obj.getString("role"), obj.getBoolean("done")));
                 }catch(JSONException e){
-                    return null;
+                    continue;
                 }
             }
+            OllamaMessage lastMessage=messages.getMessage(0);
+            for (int x = 1; x < messages.size(); x++) {
+                lastMessage.mergeChunck(messages.getMessage(x));
+            }
+            return lastMessage;
         } catch (IOException e) {
             return null;
         }
