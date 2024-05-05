@@ -159,7 +159,25 @@ public class Ollama {
         return stream(method, url, json);
     }
 
-    /
+    /**
+     * 
+     * @param model
+     * @param prompt
+     * @param system
+     * @param template
+     * @param context
+     * @param stream
+     * @param raw
+     * @param format
+     * @param images
+     * @param options
+     * @param keepAlive
+     * @return
+     * @throws Exception
+     * @throws ResponseError
+     * @throws RequestError
+     * @throws CoroutineError
+     */
     public String generate(String model, String prompt, String system, String template,
                                List<Integer> context, boolean stream, boolean raw, String format,
                                List<String> images, JSONObject options, String keepAlive)
