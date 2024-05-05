@@ -133,8 +133,22 @@ public class Ollama {
         }
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-    
-            return reader.lines().iterator();
+            return new Iterator<String>() {
+                String line;
+                @Override
+                public boolean hasNext() {
+                    try {
+                        line = reader.readLine();
+                        return line!= null;
+                    } catch (IOException e) {
+                        return false;
+                    }
+                }
+                @Override
+                public String next() {
+                    return line;
+                }
+            };
         }
     }
 
