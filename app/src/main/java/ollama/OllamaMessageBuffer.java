@@ -3,27 +3,35 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Iterator;
+import java.util.concurrent.CompletableFuture;
+
 import org.json.JSONObject;
 import org.json.JSONException;
-class OllamaMessageBuffer extends BufferedReader implements Iterable<OllamaMessage>{
-    private OllamaMessageList messages;
-    public OllamaMessageBuffer(Reader in) {
+class OllamaMessageBuffer extends BufferedReader{
+    private OllamaMessageBuffer(Reader in) {
         super(in);
     }
-    public OllamaMessageBuffer(Reader in, int sz) {
+    private OllamaMessageBuffer(Reader in, int sz) {
         super(in, sz);
     }
-    private boolean generate() throws IOException, JSONException {
-        String line;
-        while ((line= super.readLine())!=null) {
-            JSONObject json=new JSONObject();
-            OllamaMessage message=new OllamaMessage(json.getString("content"),json.getString("role"),json.getBoolean("done"));
-            messages.addMessage(message);
-        }
-        return true;
-    }
-    public Iterator<OllamaMessage> iterator(){
-        return messages.iterator();
+    public static IterableFuture<OllamaMessage> generate(Reader in) throws IOException, JSONException {
+        IterableFuture<OllamaMessage> messages = new IterableFuture<OllamaMessage>();
+        new Thread(()->{
+            BetterFuture<OllamaMessage> current=new BetterFuture<OllamaMessage>();
+            messages.Future(current);
+            OllamaMessageBuffer buffer = new OllamaMessageBuffer(in);
+            String line;
+            try {
+                while ((line= buffer.readLine())!=null) {
+                    JSONObject json=new JSONObject();
+                    OllamaMessage message=new OllamaMessage(json.getString("content"),json.getString("role"),json.getBoolean("done"));
+                    current.complete(message);
+                }
+            } catch (JSONException | IOException e) {
+                current.completeExceptionally(e);
+            }
+        }).start();
+        return messages;
     }
 }
 
