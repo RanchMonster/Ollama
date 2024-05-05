@@ -133,7 +133,7 @@ public class Ollama {
         }
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-            reader.readLine()
+            reader.readLine();
             return reader;
         }
     }
