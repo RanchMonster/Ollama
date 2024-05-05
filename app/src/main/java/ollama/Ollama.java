@@ -166,8 +166,8 @@ public class Ollama {
      * @param system The system prompt to use
      * @param template A text template to use
      * @param context The context to use
-     * @param stream 
-     * @param raw
+     * @param stream Stream the response
+     * @param raw 
      * @param format
      * @param images
      * @param options
