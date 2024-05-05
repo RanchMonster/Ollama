@@ -202,7 +202,7 @@ public class Ollama {
         JSONObject data=requestStream("POST", "/api/generate", requestBody, stream);
         return data.getString("response");
     }
-    
+    /* */
     public OllamaMessage chat(String model, OllamaMessageList messageList, boolean stream, String format,
                            JSONObject options, String keepAlive) throws IOException, JSONException, RequestError, ResponseError, CoroutineError {
         if (model == null || model.isEmpty()) {
