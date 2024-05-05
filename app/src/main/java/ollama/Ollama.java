@@ -203,7 +203,7 @@ public class Ollama {
         return data.getString("response");
     }
     /**
-     * Generate a text from a prompt
+     * Generate a text from a chat
      * @param model
      * @param messageList
      * @param stream
