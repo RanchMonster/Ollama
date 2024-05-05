@@ -31,7 +31,7 @@ public class IterableFuture<T> implements Iterable<T> {
         };
     }
     /**
-     * @return returns and removes the next avaible future 
+     * @return returns and removes the next future 
      */
     public T await() throws CoroutineError{
         return futures.remove(0).await();
