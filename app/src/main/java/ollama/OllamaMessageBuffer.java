@@ -9,6 +9,7 @@ class OllamaMessageBuffer extends BufferedReader{
     private OllamaMessageList messages;
     public OllamaMessageBuffer(Reader in) {
         super(in);
+        
     }
     public OllamaMessageBuffer(Reader in, int sz) {
         super(in, sz);
