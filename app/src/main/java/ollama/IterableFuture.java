@@ -7,6 +7,7 @@ public class IterableFuture<T> implements Iterable<T> {
     public IterableFuture(){
         this.futures= new ArrayList<BetterFuture<T>>();
     }
+    //
     public void Future(BetterFuture value){
         futures.add(value);
     }
