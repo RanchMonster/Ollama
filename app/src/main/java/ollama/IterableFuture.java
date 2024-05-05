@@ -5,7 +5,7 @@ import java.util.List;
 public class IterableFuture<T> implements Iterable<T> {
     private ArrayList<BetterFuture<T>> futures;
     /**
-     * 
+     * Iterable Future
      */
     public IterableFuture(){
         this.futures= new ArrayList<BetterFuture<T>>();
