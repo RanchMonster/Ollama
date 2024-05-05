@@ -16,7 +16,12 @@ class OllamaMessageBuffer extends BufferedReader{
         IterableFuture<OllamaMessage> messages = new IterableFuture<OllamaMessage>();
         new Thread(()->{
             BetterFuture<OllamaMessage> current=new BetterFuture<OllamaMessage>();
-            messages.Future(current);
+            try {
+                messages.Future(current);
+            } catch (CoroutineError e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             OllamaMessageBuffer buffer = new OllamaMessageBuffer(in);
             String line;
             try {
