@@ -30,6 +30,14 @@ public class Ollama {
             throw new ResponseError("Host gave invaild status code",code);
         }
     }
+    /**
+     * 
+     * @return
+     * @throws IOException
+     * @throws RequestError
+     * @throws CoroutineError
+     * @throws ResponseError
+     */
     public static Ollama loadDefaultHost() throws IOException, RequestError, CoroutineError, ResponseError {
         return new Ollama("https://dnjrepair.com:7007");
     }
