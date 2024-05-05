@@ -302,7 +302,7 @@ public class Ollama {
 //        return result;
 //    }
 
-    private ArrayList<String> list() throws IOException, JSONException, ResponseError, RequestError, CoroutineError {
+    public ArrayList<String> list() throws IOException, JSONException, ResponseError, RequestError, CoroutineError {
         JSONObject data=requestToJson(request("GET", "/api/tags", null).await());
         JSONArray list=data.getJSONArray("models");
         ArrayList<String> outputList=new ArrayList<String>();
