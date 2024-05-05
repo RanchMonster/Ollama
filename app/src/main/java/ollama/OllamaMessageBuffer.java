@@ -29,6 +29,7 @@ class OllamaMessageBuffer implements Iterable<OllamaMessage> {
                 return lastMessage;
             }
         };
+        
     }
 }
 
