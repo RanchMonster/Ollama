@@ -24,13 +24,12 @@ public class IterableFuture<T> implements Iterable<T> {
     }
     public Iterator<T> iterator(){
         return new Iterator<T>() {
-            private int currentIndex=0;
             private T future;
             @Override
             public boolean hasNext() {
-               if(currentIndex<futures.size()){
+               if(<futures.size()){
                     try {
-                        future = futures.remove(currentIndex).await();
+                        future = futures.remove(0).await();
                     } catch (CoroutineError e) {
                         return false;
                     }
