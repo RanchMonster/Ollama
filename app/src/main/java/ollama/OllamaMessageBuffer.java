@@ -28,7 +28,7 @@ class OllamaMessageBuffer extends BufferedReader implements Iterable<OllamaMessa
         OllamaMessage message=new OllamaMessage(json.getString("content"),json.getString("role"),json.getBoolean("done"));
         messages.addMessage(message);
     }
-    public Iterator iterator(){
+    public Iterator<OllamaMessage iterator(){
         return messages.iterator();
     }
 }
