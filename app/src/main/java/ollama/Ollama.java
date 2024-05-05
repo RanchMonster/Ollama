@@ -32,7 +32,7 @@ public class Ollama {
     }
     /**
      * 
-     * @return the 
+     * @return the current defa
      * @throws IOException
      * @throws RequestError
      * @throws CoroutineError
