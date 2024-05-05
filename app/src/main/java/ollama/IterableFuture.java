@@ -11,7 +11,7 @@ public class IterableFuture<T> implements Iterable<T> {
      * 
      * @param value a betterFuture Object to add to the Iterable Future
      */
-    public void Future(BetterFuture value){
+    public void Future(BetterFuture<T> value){
         futures.add(value);
     }
     public Iterator<T> iterator(){
