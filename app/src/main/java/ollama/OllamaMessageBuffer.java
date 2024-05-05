@@ -2,8 +2,6 @@ package ollama;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Iterator;
-import java.util.concurrent.CompletableFuture;
 
 import org.json.JSONObject;
 import org.json.JSONException;
