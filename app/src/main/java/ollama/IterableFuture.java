@@ -9,7 +9,7 @@ public class IterableFuture<T> implements Iterable<T> {
     }
     /**
      * 
-     * @param value a betterFuture Object to add to the 
+     * @param value a betterFuture Object to add to the Iterable Future
      */
     public void Future(BetterFuture value){
         futures.add(value);
