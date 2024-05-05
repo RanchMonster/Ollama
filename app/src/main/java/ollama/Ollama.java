@@ -303,7 +303,7 @@ public class Ollama {
 //    }
     /**
      * 
-     * @return List
+     * @return List of all available models
      * @throws IOException
      * @throws JSONException
      * @throws ResponseError
