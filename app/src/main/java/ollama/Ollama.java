@@ -17,7 +17,7 @@ public class Ollama {
 
     /**
      * 
-     * @param host the host 
+     * @param host the host you want to use
      * @throws IOException
      * @throws RequestError
      * @throws CoroutineError
