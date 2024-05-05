@@ -8,7 +8,9 @@ public class App {
         public static void main(String[] args) throws ResponseError {
         try {
             Ollama AI =Ollama.loadDefaultHost();
-            System.out.println(AI.chat("llama3", null, false, null, null, null));
+            OllamaMessageList messages = new OllamaMessageList();
+            messages.addMessage(new OllamaMessage("hello what can you do",OllamaMessage.USER));
+            System.out.println(AI.chat("llama3",messages ,true, null, null, null));
         } catch (RequestError | CoroutineError | Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
