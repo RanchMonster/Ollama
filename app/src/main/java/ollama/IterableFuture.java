@@ -5,7 +5,7 @@ import java.util.List;
 public class IterableFuture<T> implements Iterable<T> {
     private ArrayList<BetterFuture<T>> futures;
     /**
-     * Iterable Future is used for Futures that you want to 
+     * Iterable Future is used for when you have many Better Futures you want to go through 
      */
     public IterableFuture(){
         this.futures= new ArrayList<BetterFuture<T>>();
