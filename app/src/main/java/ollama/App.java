@@ -8,7 +8,7 @@ public class App {
         public static void main(String[] args) throws ResponseError {
         try {
             Ollama AI =Ollama.loadDefaultHost();
-            System.out.println(AI.checkOllama().await());
+            System.out.println(AI.chat("", null, false, null, null, null));
         } catch (RequestError | CoroutineError | Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
