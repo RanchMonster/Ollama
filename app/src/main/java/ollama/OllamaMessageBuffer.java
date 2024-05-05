@@ -39,7 +39,7 @@ class OllamaMessageBuffer implements Iterable<OllamaMessage> {
             while ((curr = reader.readLine())!=null) {
                 try{
                     obj = new JSONObject(curr);
-                }catch( e){
+                }catch(JSONException e){
                     return null;
                 }
             }
