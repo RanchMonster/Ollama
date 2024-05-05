@@ -26,7 +26,7 @@ class OllamaMessageBuffer extends BufferedReader{
             String line;
             try {
                 while ((line= buffer.readLine())!=null) {
-                    JSONObject json=new JSONObject();
+                    JSONObject json=new JSONObject(line);
                     OllamaMessage message=new OllamaMessage(json.getString("content"),json.getString("role"),json.getBoolean("done"));
                     current.complete(message);
                 }
