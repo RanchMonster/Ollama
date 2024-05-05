@@ -13,6 +13,10 @@ class OllamaMessageBuffer extends BufferedReader{
     public OllamaMessageBuffer(Reader in, int sz) {
         super(in, sz);
     }
-    
+    private void generate() throws IOException, JSONException {
+        JSONObject json=new JSONObject(super.readLine());
+        OllamaMessage message=new OllamaMessage(json.getString("content"),json.getString("role"),json.getBoolean("done"));
+        messages.addMessage(message);
+    }
 }
 
