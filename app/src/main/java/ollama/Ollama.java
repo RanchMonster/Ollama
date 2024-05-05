@@ -134,7 +134,7 @@ public class Ollama {
         }
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-            System.out.println();
+            System.out.println(reader.lines());
             JSONObject responseJson = new JSONObject();
             String line;
             while ((line = reader.readLine()) != null) {
