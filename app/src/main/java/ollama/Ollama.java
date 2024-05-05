@@ -204,8 +204,8 @@ public class Ollama {
     }
     /**
      * Generate a text from a chat
-     * @param model 
-     * @param messageList
+     * @param model The model to use
+     * @param messageList The message list to use
      * @param stream
      * @param format
      * @param options
