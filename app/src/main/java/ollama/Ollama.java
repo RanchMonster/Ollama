@@ -138,8 +138,9 @@ public class Ollama {
                 @Override
                 public boolean hasNext() {
                     try {
-                        return (line = reader.readLine()) != null;
-                       
+                        line = reader.readLine();
+                        System.out.println(line);
+                        return line!= null;
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
