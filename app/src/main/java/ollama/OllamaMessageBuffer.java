@@ -10,7 +10,8 @@ class OllamaMessageBuffer extends BufferedReader implements Iterable<OllamaMessa
     public OllamaMessageBuffer(Reader in) {
         super(in);
         try {
-            generate();
+            BetterFuture future = new BetterFuture<Boolean>();
+            future.complete(generate());
         } catch (JSONException | IOException e) {
             System.err.println("unreadable response");
         }
@@ -23,10 +24,14 @@ class OllamaMessageBuffer extends BufferedReader implements Iterable<OllamaMessa
             System.err.println("unreadable response");
         }
     }
-    private void generate() throws IOException, JSONException {
-        JSONObject json=new JSONObject(super.readLine());
-        OllamaMessage message=new OllamaMessage(json.getString("content"),json.getString("role"),json.getBoolean("done"));
-        messages.addMessage(message);
+    private boolean generate() throws IOException, JSONException {
+        String line;
+        while ((line= super.readLine())!=null) {
+            JSONObject json=new JSONObject();
+            OllamaMessage message=new OllamaMessage(json.getString("content"),json.getString("role"),json.getBoolean("done"));
+            messages.addMessage(message);
+        }
+        return true;
     }
     public Iterator<OllamaMessage> iterator(){
         return messages.iterator();
