@@ -6,7 +6,6 @@ import java.io.*;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
-
 import java.net.URI;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -122,7 +121,7 @@ public class Ollama {
         }
     }
 
-    private JSONObject stream(String method, String url, JSONObject json) throws IOException, ResponseError, RequestError, CoroutineError {
+    private BufferedReader stream(String method, String url, JSONObject json) throws IOException, ResponseError, RequestError, CoroutineError {
         HttpsURLConnection connection = request(method, url, json).await();
 
         int responseCode = connection.getResponseCode();
@@ -134,31 +133,11 @@ public class Ollama {
         }
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-            JSONObject responseJson = new JSONObject();
-            String line;
-            // while ((line = reader.readLine())!= null) {
-            //     System.out.println(line);
-                
-            // }reader.read();
-            while ((line = reader.readLine()) != null) {
-                try {
-                    JSONObject partial = new JSONObject(line);
-                    if (partial.has("error")) {
-                        throw new ResponseError(partial.getString("error"), responseCode);
-                    }else{
-                        responseJson= partial;
-                    }
-                }catch (Exception e){
-                    throw new ResponseError("did not responed with json or could not load the json string",500);
-                }
-
-                // If you want to yield a JSON object for each line, you can yield the partial JSON object here
-            }
-            return responseJson;
+            return reader;
         }
     }
 
-    public JSONObject requestStream(String method, String url, JSONObject json, boolean stream) throws IOException, ResponseError, RequestError, CoroutineError {
+    public BufferedReader requestStream(String method, String url, JSONObject json, boolean stream) throws IOException, ResponseError, RequestError, CoroutineError {
         return stream(method, url, json);
     }
 
@@ -202,7 +181,9 @@ public class Ollama {
         requestBody.put("options", options != null ? options : new JSONObject());
         requestBody.put("keep_alive", keepAlive);
 
-        JSONObject data=requestStream("POST", "/api/generate", requestBody, stream);
+        BufferedReader buff=requestStream("POST", "/api/generate", requestBody, stream);
+        String lines = buff.lines().collect(Collectors.joining("\n"));
+        JSONObject data = new JSONObject(lines);
         return data.getString("response");
     }
     /**
@@ -220,7 +201,7 @@ public class Ollama {
      * @throws ResponseError
      * @throws CoroutineError
      */
-    public OllamaMessage chat(String model, OllamaMessageList messageList, boolean stream, String format,
+    public OllamaMessageBuffer chat(String model, OllamaMessageList messageList, boolean stream, String format,
                            JSONObject options, String keepAlive) throws IOException, JSONException, RequestError, ResponseError, CoroutineError {
         if (model == null || model.isEmpty()) {
             throw new RequestError("must provide a model");
@@ -258,10 +239,9 @@ public class Ollama {
         requestBody.put("options", options != null ? options : new JSONObject());
         requestBody.put("keep_alive", keepAlive);
 
-        JSONObject data=requestStream("POST", "/api/chat", requestBody, stream);
-        JSONObject response = data.getJSONObject("message");
-        OllamaMessage message = new OllamaMessage(response.getString("content"), response.getString("role"),data.getBoolean("done"));
-        return message;
+        BufferedReader data=requestStream("POST", "/api/chat", requestBody, stream);
+
+        return new OllamaMessageBuffer(data);
     }
 
     public List<Double> embeddings(String model, String prompt, JSONObject options, String keepAlive) throws IOException, JSONException, ResponseError, RequestError, CoroutineError {
@@ -290,7 +270,10 @@ public class Ollama {
         requestBody.put("insecure", insecure);
         requestBody.put("stream", stream);
 
-        return requestStream("POST", "/api/pull", requestBody, stream);
+        BufferedReader buff = requestStream("POST", "/api/pull", requestBody, stream);
+        String lines = buff.lines().collect(Collectors.joining("\n"));
+        JSONObject data = new JSONObject(lines);
+        return data;
     }
 
 
