@@ -194,7 +194,7 @@ public class Ollama {
      * @throws ResponseError
      * @throws CoroutineError
      */
-    public IterableFuture chat(String model, OllamaMessageList messageList, boolean stream, String format,
+    public IterableFuture<OllamaMessage> chat(String model, OllamaMessageList messageList, boolean stream, String format,
                            JSONObject options, String keepAlive) throws IOException, JSONException, RequestError, ResponseError, CoroutineError {
         if (model == null || model.isEmpty()) {
             throw new RequestError("must provide a model");
