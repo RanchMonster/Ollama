@@ -208,8 +208,8 @@ public class Ollama {
      * @param messageList The message list to use
      * @param stream Stream the response
      * @param format the format to use ('','json')
-     * @param options
-     * @param keepAlive
+     * @param options the options to use
+     * @param keepAlive 
      * @return
      * @throws IOException
      * @throws JSONException
