@@ -32,9 +32,10 @@ class OllamaMessageBuffer implements Iterable<OllamaMessage> {
             }
         };
     }
-    public OllamaMessage nostream(){
+    public OllamaMessage nostream() throws IOException{
         String curr;
         JSONObject obj;
+        curr = reader.readLine();
         OllamaMessageList messages=new OllamaMessageList();
         try {
             while ((curr = reader.readLine())!=null) {
