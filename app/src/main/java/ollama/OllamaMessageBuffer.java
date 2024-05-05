@@ -21,7 +21,6 @@ class OllamaMessageBuffer extends BufferedReader{
         try {
             generate();
         } catch (JSONException | IOException e) {
-            // TODO Auto-generated catch block
             System.err.println("unreadable response");
         }
     }
