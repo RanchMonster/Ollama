@@ -121,41 +121,12 @@ public class Ollama {
         }
     }
 
-    private Iterator<String> stream(String method, String url, JSONObject json) throws IOException, ResponseError, RequestError, CoroutineError {
+    private InputStreamReader stream(String method, String url, JSONObject json) throws IOException, ResponseError, RequestError, CoroutineError {
         HttpsURLConnection connection = request(method, url, json).await();
-
-        int responseCode = connection.getResponseCode();
-        if (responseCode >= 400) {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()))) {
-                String errorMessage = reader.lines().collect(Collectors.joining("\n"));
-                throw new ResponseError(errorMessage, responseCode);
-            }
-        }
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-            return new Iterator<String>() {
-                private String line;
-                @Override
-                public boolean hasNext() {
-                    try {
-                        line = reader.readLine();
-                        System.out.println(line);
-                        return line!= null;
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                        return false;
-                    }
-                }
-                @Override
-                public String next() {
-                    return line;
-                }
-            };
-        }
+        return new InputStreamReader(connection.getInputStream());
     }
 
-    public Iterator<String> requestStream(String method, String url, JSONObject json, boolean stream) throws IOException, ResponseError, RequestError, CoroutineError {
+    public InputStreamReader requestStream(String method, String url, JSONObject json, boolean stream) throws IOException, ResponseError, RequestError, CoroutineError {
         return stream(method, url, json);
     }
 
@@ -199,12 +170,13 @@ public class Ollama {
         requestBody.put("options", options != null ? options : new JSONObject());
         requestBody.put("keep_alive", keepAlive);
 
-        Iterator<String> buff=requestStream("POST", "/api/generate", requestBody, stream);
+        InputStreamReader in=requestStream("POST", "/api/generate", requestBody, stream);
         String lines = "";
-        for (String line = buff.next(); line!= null; line = buff.next()) {
-            lines += line;
-        }
         JSONObject data = new JSONObject(lines);
+        BufferedReader buff = new BufferedReader(in);
+        for(String line=buff.readLine(); line!= null;line=buff.readLine()){
+            lines+=line;
+        }
         return data.getString("response");
     }
     /**
@@ -222,7 +194,7 @@ public class Ollama {
      * @throws ResponseError
      * @throws CoroutineError
      */
-    public OllamaMessageBuffer chat(String model, OllamaMessageList messageList, boolean stream, String format,
+    public IterableFuture chat(String model, OllamaMessageList messageList, boolean stream, String format,
                            JSONObject options, String keepAlive) throws IOException, JSONException, RequestError, ResponseError, CoroutineError {
         if (model == null || model.isEmpty()) {
             throw new RequestError("must provide a model");
@@ -260,9 +232,8 @@ public class Ollama {
         requestBody.put("options", options != null ? options : new JSONObject());
         requestBody.put("keep_alive", keepAlive);
 
-        Iterator<String> data=requestStream("POST", "/api/chat", requestBody, stream);
-
-        return new OllamaMessageBuffer(data);
+        InputStreamReader data=requestStream("POST", "/api/chat", requestBody, stream);
+        return OllamaMessageBuffer.generate(data);
     }
 
     public List<Double> embeddings(String model, String prompt, JSONObject options, String keepAlive) throws IOException, JSONException, ResponseError, RequestError, CoroutineError {
@@ -291,10 +262,11 @@ public class Ollama {
         requestBody.put("insecure", insecure);
         requestBody.put("stream", stream);
 
-        Iterator<String> buff = requestStream("POST", "/api/pull", requestBody, stream);
-        String lines = "";
-        for (String line = buff.next(); line!= null; line = buff.next()) {
-            lines += line;
+        InputStreamReader in = requestStream("POST", "/api/pull", requestBody, stream);
+        String lines="";
+        BufferedReader buff= new BufferedReader(in);
+        for(String line=buff.readLine(); line!= null;line=buff.readLine()){
+            lines+=line;
         }
         JSONObject data = new JSONObject(lines);
         return data;
@@ -302,15 +274,7 @@ public class Ollama {
 
 
 
-//    public JSONObject delete(String model) throws IOException {
-//        JSONObject requestBody = new JSONObject();
-//        requestBody.put("name", model);
-//
-//        JSONObject response = request("DELETE", "/api/delete", requestBody);
-//        JSONObject result = new JSONObject();
-//        result.put("status", response.getInt("status") == 200 ? "success" : "error");
-//        return result;
-//    }
+
     /**
      * 
      * @return List of all available models
