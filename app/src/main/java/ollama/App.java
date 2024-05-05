@@ -11,7 +11,7 @@ public class App {
             OllamaMessageList messages = new OllamaMessageList();
             messages.addMessage(new OllamaMessage("hello what can you do", OllamaMessage.USER));
             OllamaMessage message = AI.chat("llama3",messages ,true, null, null, null).await();
-            System.out.println();
+            System.out.println(message);
         } catch (RequestError | CoroutineError | Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
