@@ -207,7 +207,7 @@ public class Ollama {
      * @param model The model to use
      * @param messageList The message list to use
      * @param stream Stream the response
-     * @param format the format to use ('')
+     * @param format the format to use ('',)
      * @param options
      * @param keepAlive
      * @return
