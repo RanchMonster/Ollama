@@ -35,11 +35,11 @@ public class IterableFuture<T> implements Iterable<T> {
                     }
                     return true;
                }else if(!closed){
-                   int currnetSize=futures.size();
-                   while (currnetSize==futures.size()) {
+                    boolean out=false;
+                   while (!closed &&!(out=hasNext())) {
                         continue;
                    }
-                   return hasNext();
+                   return out;
                }else return false;
             }
             public T next(){
