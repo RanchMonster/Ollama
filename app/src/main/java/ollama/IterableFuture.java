@@ -27,16 +27,7 @@ public class IterableFuture<T> implements Iterable<T> {
             private T future;
             @Override
             public boolean hasNext() {
-               if(0<futures.size()){
-                    try {
-                        future = futures.remove(0).await();
-                    } catch (CoroutineError e) {
-                        return false;
-                    }
-                    return true;
-               }else if(!closed){
-                    return hasNext();
-               }else return false;
+                return !closed;
             }
             public T next(){
                 return future;
