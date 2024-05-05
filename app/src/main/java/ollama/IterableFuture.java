@@ -54,9 +54,14 @@ public class IterableFuture<T> implements Iterable<T> {
      */
     public T await() throws CoroutineError{
         while (!closed) {
-            
+            try{
+                return futures.remove(0).await();
+            }catch(IndexOutOfBoundsException e){
+                continue;
+            }
         }
-        return futures.remove(0).await();
+        return null;
+
     }
     
     public void close(){
