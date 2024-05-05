@@ -35,11 +35,7 @@ public class IterableFuture<T> implements Iterable<T> {
                     }
                     return true;
                }else if(!closed){
-                    boolean out=false;
-                   while (!closed &&!(out=hasNext())) {
-                        continue;
-                   }
-                   return out;
+                    return hasNext();
                }else return false;
             }
             public T next(){
