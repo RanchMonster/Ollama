@@ -30,7 +30,7 @@ public class IterableFuture<T> implements Iterable<T> {
             public boolean hasNext() {
                if(currentIndex<futures.size()){
                     try {
-                        future = futures.get(currentIndex).await();
+                        future = futures.remove(currentIndex).await();
                     } catch (CoroutineError e) {
                         return false;
                     }
