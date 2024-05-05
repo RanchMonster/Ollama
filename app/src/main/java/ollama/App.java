@@ -10,7 +10,7 @@ public class App {
             Ollama AI =Ollama.loadDefaultHost();
             OllamaMessageList messages = new OllamaMessageList();
             messages.addMessage(new OllamaMessage("hello what can you do", OllamaMessage.USER));
-            OllamaMessage message = AI.chat("llama3",messages ,true, null, null, null).nostream();
+            OllamaMessage message = AI.chat("llama3",messages ,true, null, null, null).await();
             while (message!=null) {
                 System.out.println(message);
             }
