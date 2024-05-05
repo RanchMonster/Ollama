@@ -11,8 +11,6 @@ class OllamaMessageBuffer implements Iterable<OllamaMessage> {
     }
     public Iterator<OllamaMessage> iterator() {
         return new Iterator<OllamaMessage>() {
-            private String line;
-            private OllamaMessage message;
             public boolean hasNext() {
                 return reader.hasNext();
             }
