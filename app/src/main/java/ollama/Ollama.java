@@ -32,7 +32,7 @@ public class Ollama {
     }
     /**
      * 
-     * @return the current defa
+     * @return the current default host is 
      * @throws IOException
      * @throws RequestError
      * @throws CoroutineError
