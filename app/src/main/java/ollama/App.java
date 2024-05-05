@@ -12,7 +12,7 @@ public class App {
             messages.addMessage(new OllamaMessage("hello what can you do", OllamaMessage.USER));
             IterableFuture<OllamaMessage> message = AI.chat("llama3",messages ,true, null, null, null);
             for (OllamaMessage ollamaMessage : message) {
-                
+                System.out.println(ollamaMessage.getContent());
             }
         } catch (RequestError | CoroutineError | Exception e) {
             // TODO Auto-generated catch block
