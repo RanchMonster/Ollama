@@ -164,7 +164,7 @@ public class Ollama {
      * @param model The model to use
      * @param prompt The prompt to use
      * @param system The system prompt to use
-     * @param template
+     * @param template 
      * @param context
      * @param stream
      * @param raw
