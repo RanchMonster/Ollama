@@ -31,6 +31,11 @@ public class IterableFuture<T> implements Iterable<T> {
                         return false;
                     }
                     return true;
+               }else if(currentIndex==0){
+                while (futures.size()==0) {
+                    continue;
+                }
+                return hasNext();
                }else return false;
             }
             public T next(){
