@@ -141,6 +141,7 @@ public class Ollama {
                         line = reader.readLine();
                         return line!= null;
                     } catch (IOException e) {
+                        e.printStackTrace();
                         return false;
                     }
                 }
