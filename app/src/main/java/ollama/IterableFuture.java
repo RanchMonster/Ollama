@@ -6,7 +6,7 @@ public class IterableFuture<T> implements Iterable<T> {
     private ArrayList<BetterFuture<T>> futures;
     /**
      * Iterable Future is used for when you have many Better Futures you want to go through 
-     * similar to javascript's 
+     * similar to 
      */
     public IterableFuture(){
         this.futures= new ArrayList<BetterFuture<T>>();
