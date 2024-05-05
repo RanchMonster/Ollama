@@ -68,7 +68,7 @@ public class Ollama {
         thread.start();
         return future;
     }
-    public BetterFuture<HttpsURLConnection> request(String method, String url, JSONObject json) throws RequestError {
+    private BetterFuture<HttpsURLConnection> request(String method, String url, JSONObject json) throws RequestError {
         BetterFuture<HttpsURLConnection> future = new BetterFuture<HttpsURLConnection>();
         new Thread(() -> {
             try {
