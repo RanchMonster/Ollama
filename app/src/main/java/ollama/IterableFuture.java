@@ -1,6 +1,7 @@
 package ollama;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 public class IterableFuture<T> implements Iterable<T> {
     private ArrayList<BetterFuture<T>> futures;
     public IterableFuture(){
@@ -28,5 +29,9 @@ public class IterableFuture<T> implements Iterable<T> {
                 return future;
             }
         };
+    }
+    
+    public T await() throws CoroutineError{
+        return futures.remove(0).await();
     }
 }
