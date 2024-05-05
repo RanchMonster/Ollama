@@ -124,7 +124,6 @@ public class Ollama {
 
     private JSONObject stream(String method, String url, JSONObject json) throws IOException, ResponseError, RequestError, CoroutineError {
         HttpsURLConnection connection = request(method, url, json).await();
-        System.out.println(connection.getInputStream());
 
         int responseCode = connection.getResponseCode();
         if (responseCode >= 400) {
@@ -135,6 +134,7 @@ public class Ollama {
         }
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+            System.out.println();
             JSONObject responseJson = new JSONObject();
             String line;
             while ((line = reader.readLine()) != null) {
