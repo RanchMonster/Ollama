@@ -12,8 +12,7 @@ class OllamaMessageBuffer extends BufferedReader{
         try {
             generate();
         } catch (JSONException | IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.err.println("unreadable response");
         }
     }
     public OllamaMessageBuffer(Reader in, int sz) {
