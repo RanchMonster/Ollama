@@ -136,10 +136,10 @@ public class Ollama {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
             JSONObject responseJson = new JSONObject();
             String line;
-            while ((line = reader.readLine())!= null) {
-                System.out.println(line);
+            // while ((line = reader.readLine())!= null) {
+            //     System.out.println(line);
                 
-            }reader.read();
+            // }reader.read();
             while ((line = reader.readLine()) != null) {
                 try {
                     JSONObject partial = new JSONObject(line);
