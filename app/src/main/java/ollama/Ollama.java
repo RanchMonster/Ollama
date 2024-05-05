@@ -137,7 +137,6 @@ public class Ollama {
             JSONObject responseJson = new JSONObject();
             String line;
             while ((line = reader.readLine()) != null) {
-                
                 try {
                     JSONObject partial = new JSONObject(line);
                     if (partial.has("error")) {
