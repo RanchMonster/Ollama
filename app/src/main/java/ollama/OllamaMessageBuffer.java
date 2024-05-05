@@ -5,9 +5,8 @@ import java.util.Iterator;
 import org.json.JSONObject;
 import org.json.JSONException;
 class OllamaMessageBuffer implements Iterable<OllamaMessage> {
-    private BufferedReader reader;
-    private OllamaMessage lastMessage;
-    OllamaMessageBuffer(BufferedReader reader) {
+    private Iterator<String> reader;
+    OllamaMessageBuffer(Iterator<String> reader) {
         this.reader = reader;
     }
     public Iterator<OllamaMessage> iterator() {
@@ -15,30 +14,20 @@ class OllamaMessageBuffer implements Iterable<OllamaMessage> {
             private String line;
             private OllamaMessage message;
             public boolean hasNext() {
-                try {
-                    line = reader.readLine();
-                    if (line == null) {
-                        return false;
-                    }
-                    JSONObject json= new JSONObject(line);
-                    OllamaMessage lastMessage=new OllamaMessage(json.getString("content"), json.getString("role"), json.getBoolean("done"));
-                    return true;
-                } catch (Exception e) {
-                    return false;
-                }
+                return reader.hasNext();
             }
             public OllamaMessage next() {
-                return lastMessage;
+                JSONObject obj = new JSONObject(reader.next());
+                OllamaMessage message=new OllamaMessage(obj.getString("content"), obj.getString("role"), obj.getBoolean("done"));
+                return message;
             }
         };
     }
     public OllamaMessage nostream() throws IOException{
         String curr;
         JSONObject obj;
-        curr = reader.readLine();
         OllamaMessageList messages=new OllamaMessageList();
-        try {
-            while ((curr = reader.readLine())!=null) {
+            while ((curr = reader.next())!=null) {
                 try{
                     obj = new JSONObject(curr);
                     messages.addMessage(new OllamaMessage(obj.getString("content"), obj.getString("role"), obj.getBoolean("done")));
@@ -46,14 +35,11 @@ class OllamaMessageBuffer implements Iterable<OllamaMessage> {
                     continue;
                 }
             }
-            OllamaMessage lastMessage=messages.getMessage(0);
+            OllamaMessage Message=messages.getMessage(0);
             for (int x = 1; x < messages.size(); x++) {
-                lastMessage.mergeChunck(messages.getMessage(x));
+                Message.mergeChunck(messages.getMessage(x));
             }
-            return lastMessage;
-        } catch (IOException e) {
-            return null;
-        }
+            return Message;
     }
 }
 

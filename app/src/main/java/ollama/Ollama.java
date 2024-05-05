@@ -121,7 +121,7 @@ public class Ollama {
         }
     }
 
-    private BufferedReader stream(String method, String url, JSONObject json) throws IOException, ResponseError, RequestError, CoroutineError {
+    private Iterator<String> stream(String method, String url, JSONObject json) throws IOException, ResponseError, RequestError, CoroutineError {
         HttpsURLConnection connection = request(method, url, json).await();
 
         int responseCode = connection.getResponseCode();
@@ -133,11 +133,11 @@ public class Ollama {
         }
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-            return reader;
+            return reader.lines().iterator();
         }
     }
 
-    public BufferedReader requestStream(String method, String url, JSONObject json, boolean stream) throws IOException, ResponseError, RequestError, CoroutineError {
+    public Iterator<String> requestStream(String method, String url, JSONObject json, boolean stream) throws IOException, ResponseError, RequestError, CoroutineError {
         return stream(method, url, json);
     }
 
@@ -181,8 +181,11 @@ public class Ollama {
         requestBody.put("options", options != null ? options : new JSONObject());
         requestBody.put("keep_alive", keepAlive);
 
-        BufferedReader buff=requestStream("POST", "/api/generate", requestBody, stream);
-        String lines = buff.lines().collect(Collectors.joining("\n"));
+        Iterator<String> buff=requestStream("POST", "/api/generate", requestBody, stream);
+        String lines = "";
+        for (String line = buff.next(); line!= null; line = buff.next()) {
+            lines += line;
+        }
         JSONObject data = new JSONObject(lines);
         return data.getString("response");
     }
@@ -239,7 +242,7 @@ public class Ollama {
         requestBody.put("options", options != null ? options : new JSONObject());
         requestBody.put("keep_alive", keepAlive);
 
-        BufferedReader data=requestStream("POST", "/api/chat", requestBody, stream);
+        Iterator<String> data=requestStream("POST", "/api/chat", requestBody, stream);
 
         return new OllamaMessageBuffer(data);
     }
@@ -270,8 +273,11 @@ public class Ollama {
         requestBody.put("insecure", insecure);
         requestBody.put("stream", stream);
 
-        BufferedReader buff = requestStream("POST", "/api/pull", requestBody, stream);
-        String lines = buff.lines().collect(Collectors.joining("\n"));
+        Iterator<String> buff = requestStream("POST", "/api/pull", requestBody, stream);
+        String lines = "";
+        for (String line = buff.next(); line!= null; line = buff.next()) {
+            lines += line;
+        }
         JSONObject data = new JSONObject(lines);
         return data;
     }
