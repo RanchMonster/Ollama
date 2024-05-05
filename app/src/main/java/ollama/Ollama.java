@@ -159,7 +159,7 @@ public class Ollama {
         return stream(method, url, json);
     }
 
-    //
+    /
     public String generate(String model, String prompt, String system, String template,
                                List<Integer> context, boolean stream, boolean raw, String format,
                                List<String> images, JSONObject options, String keepAlive)
