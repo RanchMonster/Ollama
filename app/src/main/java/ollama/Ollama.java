@@ -133,9 +133,7 @@ public class Ollama {
         }
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-            while (!reader.ready()) {
-                continue;
-            }
+    
             return reader.lines().iterator();
         }
     }
