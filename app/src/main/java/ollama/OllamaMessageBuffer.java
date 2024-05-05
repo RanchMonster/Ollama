@@ -22,7 +22,7 @@ class OllamaMessageBuffer extends BufferedReader{
             generate();
         } catch (JSONException | IOException e) {
             // TODO Auto-generated catch block
-            Sys
+            System.err.println("");
         }
     }
     private void generate() throws IOException, JSONException {
