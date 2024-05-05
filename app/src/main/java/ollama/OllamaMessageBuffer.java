@@ -19,8 +19,7 @@ class OllamaMessageBuffer extends BufferedReader{
             try {
                 messages.Future(current);
             } catch (CoroutineError e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                
             }
             OllamaMessageBuffer buffer = new OllamaMessageBuffer(in);
             String line;
