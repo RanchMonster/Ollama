@@ -8,8 +8,11 @@
 name: Gradle Package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 
 jobs:
   build:
@@ -39,3 +42,6 @@ jobs:
     # the publishing section of your build.gradle
     - name: Publish to GitHub Packages
       run: ./gradlew.bat publish
+      env:
+        USERNAME: ${{ github.actor }}
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
