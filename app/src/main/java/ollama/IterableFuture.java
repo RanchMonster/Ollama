@@ -1,7 +1,6 @@
 package ollama;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 public class IterableFuture<T> implements Iterable<T> {
     private ArrayList<BetterFuture<T>> futures;
     private boolean closed;
