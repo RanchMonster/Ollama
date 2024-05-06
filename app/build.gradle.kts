@@ -27,7 +27,6 @@ publishing {
         }
     }
 }
-
 repositories {
     maven {
         name = "GitHubPackages"
@@ -63,7 +62,6 @@ tasks.named("distZip") {
 tasks.named("distTar") {
     dependsOn(":App:shadowJar")
 }
-
 tasks.named("startScripts") {
     dependsOn(":App:shadowJar")
 }
