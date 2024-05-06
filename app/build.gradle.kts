@@ -30,7 +30,7 @@ publishing {
 repositories {
     maven {
         name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/RanchMonster/Ollama.git")
+        url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
         credentials {
             username = "RanchMonster"
             password = "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"
