@@ -2,6 +2,8 @@ plugins {
     application
     id("com.github.johnrengelman.shadow") version "8.0.0"
     id("java")
+    `maven-publish` apply false
+
 }
 
 repositories {
@@ -13,10 +15,6 @@ dependencies {
     implementation("org.json:json:20140107")
     shadow("junit:junit:3.8.2")
     implementation("com.google.guava:guava:31.1-jre")
-}
-
-plugins {
-    `maven-publish` apply false
 }
 subprojects {
     apply(plugin = "maven-publish")
