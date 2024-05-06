@@ -29,6 +29,6 @@ jobs:
           ${{ runner.os }}-gradle-
 
     - name: Build with Gradle
-      run: ../gradlew.bat build
+      run: C:\code\Java-Ollama\Ollama\gradlew.bat
 
     # Additional steps if needed
