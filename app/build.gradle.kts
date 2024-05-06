@@ -6,16 +6,7 @@ plugins {
     id("java")
     id("maven-publish")
 }
-publishing{
-    maven {
-      name = "GitHubPackages"
-      url = "https://maven.pkg.github.com/RanchMonster/Ollama"
-      credentials {
-            username = System.getenv("GITHUB_ACTOR")
-            password = System.getenv("GITHUB_TOKEN")
-            }
-    }
-}
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -26,10 +17,20 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
     implementation("org.json:json:20140107")
     shadow("junit:junit:3.8.2")
+    maven("maven-publish")
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
 }
-
+task.publishing{
+    maven {
+      name = "GitHubPackages"
+      url = "https://maven.pkg.github.com/RanchMonster/Ollama"
+      credentials {
+            username = System.getenv("GITHUB_ACTOR")
+            password = System.getenv("GITHUB_TOKEN")
+            }
+    }
+}
 application {
     // Define the main class for the application.
     mainClass.set("ollama.Ollama")
