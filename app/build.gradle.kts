@@ -24,7 +24,7 @@ dependencies {
 task.publishing{
     maven {
       name = "GitHubPackages"
-      url = "https://maven.pkg.github.com/RanchMonster/Ollama"
+      url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
       credentials {
             username = System.getenv("GITHUB_ACTOR")
             password = System.getenv("GITHUB_TOKEN")
