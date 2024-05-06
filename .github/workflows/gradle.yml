@@ -29,6 +29,6 @@ jobs:
           ${{ runner.os }}-gradle-
 
     - name: Build with Gradle
-      run: gradlew.bat build
+      run: ../gradlew.bat build
 
     # Additional steps if needed
