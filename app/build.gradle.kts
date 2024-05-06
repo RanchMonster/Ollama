@@ -17,9 +17,21 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
     implementation("org.json:json:20140107")
     shadow("junit:junit:3.8.2")
-    maven("maven-publish")
+    // maven("maven-publish")
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
+}
+publishing {
+    publications {
+        create<MavenPublication>("gpr") {
+            run {
+                groupId = "com.enefce.libraries"
+                artifactId = getArtificatId()
+                version = getVersionName()
+                artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
+            }
+        }
+    }
 }
 task.publishing{
     maven {
