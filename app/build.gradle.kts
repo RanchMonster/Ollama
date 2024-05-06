@@ -17,17 +17,7 @@ dependencies {
 }
 
 publishing {
-    publications {
-        create<MavenPublication>("gpr") {
-            from(components["java"])
-            groupId = "myjars"
-            artifactId = "Ollama" // Set your artifactId
-            version = "1.0.0" // Set your version
-            artifact(tasks.shadowJar.get().archiveFile)
-        }
-    }
-}
-repositories {
+    repositories {
     maven {
         name = "GitHubPackages"
         url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
@@ -37,6 +27,17 @@ repositories {
         }
     }
 }
+}
+publications {
+        create<MavenPublication>("gpr") {
+            from(components["java"])
+            groupId = "myjars"
+            artifactId = "Ollama" // Set your artifactId
+            version = "1.0.0" // Set your version
+            artifact(tasks.shadowJar.get().archiveFile)
+        }
+    }
+
 
 application {
     mainClass.set("ollama.Ollama")
