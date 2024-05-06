@@ -2,7 +2,6 @@ plugins {
     application
     id("com.github.johnrengelman.shadow") version "8.0.0"
     id("java")
-    id("maven-publish")
 }
 
 repositories {
@@ -16,28 +15,29 @@ dependencies {
     implementation("com.google.guava:guava:31.1-jre")
 }
 
-publishing {
-    repositories {
-    maven {
-        name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
-        credentials {
-            username = "RanchMonster"
-            password = "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"
+plugins {
+    `maven-publish` apply false
+}
+subprojects {
+    apply(plugin = "maven-publish")
+    configure<PublishingExtension> {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/OWNER/REPOSITORY")
+                credentials {
+                    username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+                }
+            }
+        }
+        publications {
+            register<MavenPublication>("gpr") {
+                from(components["java"])
+            }
         }
     }
 }
-}
-publications {
-        create<MavenPublication>("gpr") {
-            from(components["java"])
-            groupId = "myjars"
-            artifactId = "Ollama" // Set your artifactId
-            version = "1.0.0" // Set your version
-            artifact(tasks.shadowJar.get().archiveFile)
-        }
-    }
-
 
 application {
     mainClass.set("ollama.Ollama")
