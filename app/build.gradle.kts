@@ -6,7 +6,16 @@ plugins {
     id("java")
     id("maven-publish")
 }
-
+publishing{
+    maven {
+      name = "GitHubPackages"
+      url = "https://maven.pkg.github.com/octocat/hello-world"
+      credentials {
+            username = System.getenv("GITHUB_ACTOR")
+            password = System.getenv("GITHUB_TOKEN")
+            }
+    }
+}
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
