@@ -33,7 +33,7 @@ publishing {
         }
     }
 }
-task.publishing{
+repositories{
     maven {
       name = "GitHubPackages"
       url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
