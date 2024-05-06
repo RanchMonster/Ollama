@@ -20,7 +20,7 @@ publishing {
     publications {
         create<MavenPublication>("gpr") {
             from(components["java"])
-            groupId = "com.enefce.libraries"
+            groupId = "myjars"
             artifactId = "Ollama" // Set your artifactId
             version = "1.0.0" // Set your version
             artifact(tasks.shadowJar.get().archiveFile)
