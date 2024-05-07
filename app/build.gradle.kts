@@ -15,14 +15,11 @@ dependencies {
     shadow("junit:junit:3.8.2")
     implementation("com.google.guava:guava:31.1-jre")
 }
-
-plugins {
-}
 publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/OWNER/REPOSITORY")
+            url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
             credentials {
                 username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
@@ -35,16 +32,7 @@ publishing {
         }
     }
 }
-repositories {
-    maven {
-        name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
-        credentials {
-            username = "RanchMonster"
-            password = "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"
-        }
-    }
-}
+
 
 application {
     mainClass.set("ollama.Ollama")
