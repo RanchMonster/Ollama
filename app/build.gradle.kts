@@ -54,7 +54,7 @@ tasks.named<Test>("test") {
 tasks.named("distZip") {
     dependsOn(":App:shadowJar")
 }
-tasks.named("publish"){
+tasks.named(":App:publish"){
     printnl("I ran so that is not the issue")
 }
 
