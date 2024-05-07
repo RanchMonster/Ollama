@@ -27,7 +27,7 @@ publishing {
         }
     }
     publications {
-        register<MavenPublication>("gpr") {
+        register<MavenPublication>("Ollama") {
             from(components["java"])
         }
     }
