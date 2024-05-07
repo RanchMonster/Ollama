@@ -2,7 +2,7 @@ plugins {
     application
     id("com.github.johnrengelman.shadow") version "8.0.0"
     id("java")
-
+    `maven-publish`
 }
 
 repositories {
@@ -15,23 +15,33 @@ dependencies {
     shadow("junit:junit:3.8.2")
     implementation("com.google.guava:guava:31.1-jre")
 }
-subprojects {
-    apply(plugin = "maven-publish")
-    configure<PublishingExtension> {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/OWNER/REPOSITORY")
-                credentials {
-                    username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                    password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-                }
+
+plugins {
+}
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/OWNER/REPOSITORY")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
             }
         }
-        publications {
-            register<MavenPublication>("gpr") {
-                from(components["java"])
-            }
+    }
+    publications {
+        register<MavenPublication>("gpr") {
+            from(components["java"])
+        }
+    }
+}
+repositories {
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
+        credentials {
+            username = "RanchMonster"
+            password = "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"
         }
     }
 }
