@@ -36,7 +36,13 @@ public class IterableFuture<T> implements Iterable<T> {
                     }
                     return true;
                 }else{
-                    return false;
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    return hasNext();
                 }
             }
             public T next(){
