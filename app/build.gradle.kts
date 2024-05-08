@@ -33,7 +33,7 @@ publishing {
     // }
      publications {
         create<MavenPublication>("maven") {
-            groupId = "Ranch.Monster.AI"
+            groupId = "my.Monster.AI"
             artifactId = "Ollama"
             version = "1.0"
 
