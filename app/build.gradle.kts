@@ -26,11 +26,11 @@ publishing {
             }
         }
     }
-    publications {
-        gpr<MavenPublication>("Ollama") {
-            from(components["java"])
-        }
-    }
+    // publications {
+    //     gpr<MavenPublication>("Ollama") {
+    //         from(components["java"])
+    //     }
+    // }
 }
 
 
