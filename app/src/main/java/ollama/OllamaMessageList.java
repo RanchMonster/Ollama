@@ -2,6 +2,8 @@ package ollama;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.json.JSONObject;
+
 public class OllamaMessageList implements Iterable<OllamaMessage> {
     private ArrayList<OllamaMessage> messages;
     public OllamaMessageList(){
@@ -44,5 +46,13 @@ public class OllamaMessageList implements Iterable<OllamaMessage> {
             }
         };
     }
-    
+    public static OllamaMessageList fromJsonObject(JSONObject jsonObject){
+        OllamaMessageList messageList=new OllamaMessageList();
+        String content=jsonObject.getString("content");
+        String role=jsonObject.getString("role");
+        Boolean done=jsonObject.getBoolean("done");
+        OllamaMessage message=new OllamaMessage(content, role, done);
+        messageList.addMessage(message);
+        return messageList;
+    }
 }
