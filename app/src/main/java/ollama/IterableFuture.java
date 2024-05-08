@@ -39,7 +39,6 @@ public class IterableFuture<T> implements Iterable<T> {
                         }
                     }
                 }
-            
                 if(!futures.isEmpty()){
                     try{
                         future=futures.remove(0).await();
