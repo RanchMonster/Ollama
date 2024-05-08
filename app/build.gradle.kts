@@ -22,7 +22,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
             credentials {
                 username = project.findProperty("gpr.user") as String? ?: "RanchMonster"//System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?:"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" //System.getenv("TOKEN")
+                password = project.findProperty("gpr.key") as String? ?: //System.getenv("TOKEN")
             }
         }
     }
