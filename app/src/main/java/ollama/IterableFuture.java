@@ -28,7 +28,6 @@ public class IterableFuture<T> implements Iterable<T> {
             @Override
             public boolean hasNext() {
                 while (!closed &&futures.isEmpty()) {
-                    continue;
                 }
                 if(!futures.isEmpty()){
                     try{
