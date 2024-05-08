@@ -37,7 +37,6 @@ public class IterableFuture<T> implements Iterable<T> {
                         }catch(InterruptedException e2){
                             e2.printStackTrace();
                         }
-                    
                     }
                 }
                 if(!futures.isEmpty()){
