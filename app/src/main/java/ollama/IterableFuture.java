@@ -33,7 +33,7 @@ public class IterableFuture<T> implements Iterable<T> {
                     }catch(StackOverflowError e){
                         try{
                             Thread.sleep(10);
-                            
+                        
                         }catch(InterruptedException e2){
                             e2.printStackTrace();
                         }
