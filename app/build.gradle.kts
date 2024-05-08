@@ -38,7 +38,7 @@ task.writeNewPom {
     doLast {
         pom {
             project {
-                groupId =""
+                groupId ="my.jars.AI"
                 artifactId= "test"
                 version ="1.0.0"
                 inceptionYear= "2008"
