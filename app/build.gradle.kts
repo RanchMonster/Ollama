@@ -16,7 +16,7 @@ dependencies {
     implementation("com.google.guava:guava:31.1-jre")
 }
 publishing {
-    repositories {
+    // repositories {
     //     maven {
     //         name = "GitHubPackages"
     //         url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
