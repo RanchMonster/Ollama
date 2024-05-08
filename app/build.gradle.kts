@@ -2,7 +2,7 @@ plugins {
     application
     id("com.github.johnrengelman.shadow") version "8.0.0"
     id("java")
-    `maven-publish`
+    id("maven-publish")
 }
 
 repositories {
