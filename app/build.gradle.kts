@@ -40,6 +40,7 @@ publishing {
             from(components["java"])
         }
     }
+    }
 }
 
 
