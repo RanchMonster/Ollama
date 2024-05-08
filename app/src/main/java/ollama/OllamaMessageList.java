@@ -44,4 +44,5 @@ public class OllamaMessageList implements Iterable<OllamaMessage> {
             }
         };
     }
+    
 }
