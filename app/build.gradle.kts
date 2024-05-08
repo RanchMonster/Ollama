@@ -33,7 +33,7 @@ publishing {
     // }
      publications {
         create<MavenPublication>("maven") {
-            groupId = "org.gradle.sample"
+            groupId = ".gradle.sample"
             artifactId = "library"
             version = "1.1"
 
