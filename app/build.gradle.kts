@@ -41,7 +41,7 @@ task.writeNewPom {
                 groupId ="org.example"
                 artifactId= "test"
                 version ="1.0.0"
-                inceptionYear "2008"
+                inceptionYear= "2008"
                 licenses {
                     license {
                         name "The Apache Software License, Version 2.0"
