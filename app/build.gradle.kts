@@ -4,8 +4,7 @@ plugins {
     id("java")
     id("maven-publish")
 }
-group = "my.jars.AI"
-version = "1.0"
+
 repositories {
     mavenCentral()
 }
@@ -22,8 +21,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
             credentials {
-                username = project.findProperty("gpr.user") as String? ?:System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?:System.getenv("TOKEN")
+                username = project.findProperty("gpr.user") as String? ?: "RanchMonster"//System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?:"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" //System.getenv("TOKEN")
             }
         }
     }
@@ -34,31 +33,13 @@ publishing {
     }
 }
 
-task.writeNewPom {
-    doLast {
-        pom {
-            project {
-                groupId ="my.jars.AI"
-                artifactId= "Ollama"
-                version ="1.0.0"
-                inceptionYear= "2008"
-                licenses {
-                    license {
-                        name="The Apache Software License, Version 2.0"
-                        url ="http://www.apache.org/licenses/LICENSE-2.0.txt"
-                        distribution ="repo"
-                    }
-                }
-            }
-        }.writeTo("pom.xml")
-    }
-}
+
 application {
     mainClass.set("ollama.Ollama")
 }
 
 tasks.shadowJar {
-    // archiveBaseName.set("App")
+    archiveBaseName.set("App")
     archiveClassifier.set("")
 }
 
