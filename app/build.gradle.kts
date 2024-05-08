@@ -4,8 +4,8 @@ plugins {
     id("java")
     id("maven-publish")
 }
-    repositories {
-
+group = "com.example.app"
+version = "1.0"
 repositories {
     mavenCentral()
 }
