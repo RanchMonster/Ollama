@@ -38,7 +38,7 @@ task.writeNewPom {
     doLast {
         pom {
             project {
-                groupId ="org.example"
+                groupId ="org"
                 artifactId= "test"
                 version ="1.0.0"
                 inceptionYear= "2008"
