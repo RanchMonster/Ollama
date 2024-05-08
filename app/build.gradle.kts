@@ -48,7 +48,7 @@ application {
 }
 
 tasks.shadowJar {
-    archiveBaseName.set("App")
+    archiveBaseName.set("Ollama")
     archiveClassifier.set("")
 }
 
