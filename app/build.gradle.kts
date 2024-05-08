@@ -39,7 +39,7 @@ task.writeNewPom {
         pom {
             project {
                 groupId ="my.jars.AI"
-                artifactId= "test"
+                artifactId= "Ollama"
                 version ="1.0.0"
                 inceptionYear= "2008"
                 licenses {
