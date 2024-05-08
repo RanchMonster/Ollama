@@ -19,7 +19,7 @@ public class OllamaMessage {
      * this is for user Meassges 
      */
     public OllamaMessage(String content, String role){
-        this(content, role, false);
+        this(content, role, true);
     }
     public String getContent() {
         return this.content;
@@ -38,6 +38,9 @@ public class OllamaMessage {
     }
     public static OllamaMessage fromJsonObject(JSONObject json){
         return new OllamaMessage(json.getString("content"),json.getString("role"));
+    }
+    public boolean isDone(){
+        return this.done;
     }
     public void mergeChunck(OllamaMessage other){
         this.content+=other.content;
