@@ -36,6 +36,9 @@ public class OllamaMessage {
         data.put("role", role);
         return data;
     }
+    public static OllamaMessage fromJsonObject(JSONObject json){
+        return new OllamaMessage(json.getString("content"),json.getString("role"));
+    }
     public void mergeChunck(OllamaMessage other){
         this.content+=other.content;
         
