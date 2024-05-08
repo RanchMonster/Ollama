@@ -17,21 +17,29 @@ dependencies {
 }
 publishing {
     repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: "RanchMonster"//System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?:"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" //System.getenv("TOKEN")
-            }
-        }
-    }
+    //     maven {
+    //         name = "GitHubPackages"
+    //         url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
+    //         credentials {
+    //             username = project.findProperty("gpr.user") as String? ?: "RanchMonster"//System.getenv("USERNAME")
+    //             password = project.findProperty("gpr.key") as String? ?:"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" //System.getenv("TOKEN")
+    //         }
+    //     }
+    // }
     // publications {
     //     gpr<MavenPublication>("Ollama") {
     //         from(components["java"])
     //     }
     // }
-    
+     publications {
+        create<MavenPublication>("maven") {
+            groupId = "org.gradle.sample"
+            artifactId = "library"
+            version = "1.1"
+
+            from(components["java"])
+        }
+    }
 }
 
 
