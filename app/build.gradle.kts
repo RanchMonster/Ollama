@@ -39,7 +39,7 @@ task.writeNewPom {
         pom {
             project {
                 groupId ="org.example"
-                artifactId 'test'
+                artifactId 'test"
                 version '1.0.0'
                 inceptionYear '2008'
                 licenses {
