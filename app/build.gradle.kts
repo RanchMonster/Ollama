@@ -34,7 +34,7 @@ publishing {
     }
 }
 
-task writeNewPom {
+task.writeNewPom {
     doLast {
         pom {
             project {
