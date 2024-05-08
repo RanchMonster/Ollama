@@ -35,7 +35,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "Ranch.Monster.AI"
             artifactId = "Ollama"
-            version = "1.1"
+            version = "1.0"
 
             from(components["java"])
         }
