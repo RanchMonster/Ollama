@@ -4,7 +4,7 @@ plugins {
     id("java")
     id("maven-publish")
 }
-group = "my."
+group = "my.jars.AI"
 version = "1.0"
 repositories {
     mavenCentral()
