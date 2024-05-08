@@ -33,7 +33,7 @@ publishing {
     // }
      publications {
         create<MavenPublication>("maven") {
-            groupId = "Ranch.Monstor.sample"
+            groupId = "Ranch.Monster.AI"
             artifactId = "library"
             version = "1.1"
 
