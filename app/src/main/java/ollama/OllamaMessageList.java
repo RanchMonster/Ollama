@@ -55,4 +55,5 @@ public class OllamaMessageList implements Iterable<OllamaMessage> {
         messageList.addMessage(message);
         return messageList;
     }
+    
 }
