@@ -39,8 +39,8 @@ application {
 }
 
 tasks.shadowJar {
-    archiveBaseName.set("App")
-    archiveClassifier.set("")
+    // archiveBaseName.set("App")
+    // archiveClassifier.set("")
 }
 
 tasks.named<Jar>("jar") {
