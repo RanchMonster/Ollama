@@ -40,7 +40,7 @@ application {
 
 tasks.shadowJar {
     // archiveBaseName.set("App")
-    // archiveClassifier.set("")
+    archiveClassifier.set("")
 }
 
 tasks.named<Jar>("jar") {
