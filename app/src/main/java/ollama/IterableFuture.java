@@ -37,6 +37,7 @@ public class IterableFuture<T> implements Iterable<T> {
                 } else if (!closed) {
                     try {
                         Thread.sleep(1);
+                        return hasNext();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
