@@ -40,7 +40,7 @@ public class IterableFuture<T> implements Iterable<T> {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    return false;
+                    return hasNext();
                 } else {
                     return false;
                 }
