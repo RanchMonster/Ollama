@@ -38,7 +38,7 @@ public class IterableFuture<T> implements Iterable<T> {
                     try {
                         Thread.sleep(1);
                         return hasNext();
-                    } catch (InterruptedException e) {
+                    } catch (InterruptedException |StackOverflowError e) {
                         e.printStackTrace();
                     }
                     return false;
