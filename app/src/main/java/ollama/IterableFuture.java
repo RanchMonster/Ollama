@@ -1,9 +1,12 @@
 package ollama;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class IterableFuture<T> implements Iterable<T> {
     private ArrayList<BetterFuture<T>> futures;
     private boolean closed;
+
     /**
      * Iterable Future is used for when you have many Better Futures you want to go through 
      * similar to A Async for loop you find in other languages
@@ -12,6 +15,7 @@ public class IterableFuture<T> implements Iterable<T> {
         this.futures= new ArrayList<BetterFuture<T>>();
         this.closed=false;
     }
+
     /**
      * 
      * @param value a betterFuture Object to add to the Iterable Future
@@ -21,35 +25,45 @@ public class IterableFuture<T> implements Iterable<T> {
         if(closed)throw new CoroutineError("you can not add a Future to a closed Future");
         futures.add(value);
     }
+
     public Iterator<T> iterator(){
-        
         return new Iterator<T>() {
-            private T future;
+            private int index = 0;
+
             @Override
             public boolean hasNext() {
-                if(!futures.isEmpty()){
-                    try{
-                        future=futures.remove(0).await();
-                    }catch(CoroutineError e){
-                        e.printStackTrace();
-                        return false;
-                    }
+                if (index < futures.size()) {
                     return true;
-                }else{
+                } else if (!closed) {
                     try {
                         Thread.sleep(1);
                     } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                    return hasNext();
+                    return false;
+                } else {
+                    return false;
                 }
             }
-            public T next(){
-                return future;
+
+            @Override
+            public T next() {
+                if (hasNext()) {
+                    try {
+                        T future = futures.get(index).await();
+                        index++;
+                        return future;
+                    } catch (CoroutineError e) {
+                        e.printStackTrace();
+                        throw new NoSuchElementException();
+                    }
+                } else {
+                    throw new NoSuchElementException();
+                }
             }
         };
     }
+
     /**
      * @return returns the first Future and removes it from the iterable future
      * @throws CoroutineError
@@ -63,7 +77,6 @@ public class IterableFuture<T> implements Iterable<T> {
             }
         }
         return null;
-
     }
     
     public void close(){
