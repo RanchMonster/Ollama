@@ -11,7 +11,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
 import org.json.*;
-public class Ollama {
+public class Ollama implements Serializable {
     private final String host;
 
     /**
