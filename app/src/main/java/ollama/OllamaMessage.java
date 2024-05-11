@@ -2,7 +2,7 @@ package ollama;
 
 import org.json.JSONObject;
 
-public class OllamaMessage {
+public class OllamaMessage implements Serializable {
     private String content;
     private String role;
     private Boolean done;
