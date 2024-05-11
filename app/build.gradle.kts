@@ -35,7 +35,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "my.jars"
             artifactId = "ollama"
-            version = "1.2"
+            version = "1.3"
 
             from(components["java"])
         }
