@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.function.Supplier;
 
-public class BetterFuture<T> extends CompletableFuture<T> {
+public class BetterFuture<T> extends CompletableFuture<T> implements Serializable {
     /**
      * allows you to await a return with out Interrupting it
      * @return the Completed Futures return value
