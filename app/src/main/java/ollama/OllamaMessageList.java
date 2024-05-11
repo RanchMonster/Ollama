@@ -2,7 +2,6 @@ package ollama;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.json.JSONObject;
 
 public class OllamaMessageList implements Iterable<OllamaMessage>,Serializable {
     private ArrayList<OllamaMessage> messages;
