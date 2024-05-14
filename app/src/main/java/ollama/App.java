@@ -8,6 +8,9 @@ public class App {
         public static void main(String[] args) throws ResponseError {
             System.out.println("Ollama API Tool is ready");
     }
-    public static void test
+    public static void test(){
+        System.out.println("Ollama API Tool is ready");
+
+    }
 }
 
