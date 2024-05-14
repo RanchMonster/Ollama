@@ -10,7 +10,6 @@ public class App {
     }
     public static void test(){
         System.out.println("Ollama API Tool is ready");
-
     }
 }
 
