@@ -6,7 +6,7 @@ package ollama;
 
 public class App {
         public static void main(String[] args) throws ResponseError {
-            System.out.println("Ollama ");
+            System.out.println("Ollama API TOOL");
     }
 }
 
