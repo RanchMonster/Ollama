@@ -6,12 +6,6 @@ package ollama;
 
 public class App {
         public static void main(String[] args) throws ResponseError {
-        try {
             
-        } catch (RequestError | CoroutineError | Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        }
     }
 
