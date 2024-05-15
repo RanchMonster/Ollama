@@ -1,4 +1,4 @@
 package ollama;
-public class OllamaFunctionCall {
+public class OllamaFunctionCall ex {
     
 }
