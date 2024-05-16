@@ -16,33 +16,30 @@ dependencies {
     shadow("junit:junit:3.8.2")
     implementation("com.google.guava:guava:31.1-jre")
 }
+
 publishing {
-    // repositories {
-    //     maven {
-    //         name = "GitHubPackages"
-    //         url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
-    //         credentials {
-    //             username = project.findProperty("gpr.user") as String? ?: "RanchMonster"//System.getenv("USERNAME")
-    //             password = project.findProperty("gpr.key") as String? ?:"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" //System.getenv("TOKEN")
-    //         }
-    //     }
-    // }
-    // publications {
-    //     gpr<MavenPublication>("Ollama") {
-    //         from(components["java"])
-    //     }
-    // }
-     publications {
+    publications {
         create<MavenPublication>("maven") {
             groupId = "my.jars"
             artifactId = "ollama"
             version = "1.3"
-
             from(components["java"])
+            artifact(tasks.named("shadowJar")) {
+                classifier = null
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/RanchMonster/Ollama")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: "RanchMonster"
+                password = project.findProperty("gpr.key") as String? ?: "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"
+            }
         }
     }
 }
-
 
 application {
     mainClass.set("ollama.Ollama")
@@ -64,9 +61,29 @@ tasks.named<Test>("test") {
 tasks.named("distZip") {
     dependsOn(":App:shadowJar")
 }
+
 tasks.named("distTar") {
     dependsOn(":App:shadowJar")
 }
+
 tasks.named("startScripts") {
     dependsOn(":App:shadowJar")
+}
+
+tasks.register<Copy>("copyLibs") {
+    from(configurations.runtimeClasspath)
+    into("libs")
+}
+
+moditect {
+    addModuleInfo {
+        module {
+            moduleInfoFile.set(file("src/main/module-info.java"))
+            targetJar.set(file("libs/Ollama-1.3.jar"))
+        }
+    }
+}
+
+tasks.named("compileJava") {
+    dependsOn("copyLibs")
 }
